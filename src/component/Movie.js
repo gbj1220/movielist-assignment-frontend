@@ -12,7 +12,7 @@ export class Movie extends Component {
   componentDidMount = async () => {
     try {
       let allMovies = await axios.get(
-        "http://localhost:3000/movies/get-all-movies"
+        "http://localhost:3001/movies/get-all-movies"
       );
       this.setState({
         movieList: allMovies.data.data,
@@ -31,7 +31,7 @@ export class Movie extends Component {
   handleMovieSubmit = async () => {
     try {
       let createdMovie = await axios.post(
-        "http://localhost:3000/movies/create-movie",
+        "http://localhost:3001/movies/create-movie",
         { movie: this.state.movieInput }
       );
 
@@ -52,7 +52,7 @@ export class Movie extends Component {
   handleDeleteMovieByParams = async (id) => {
     try {
       let deleteMovie = await axios.delete(
-        `http://localhost:3000/movies/delete-movie/${id}`
+        `http://localhost:3001/movies/delete-movie/${id}`
       );
 
       let newDeletedMovieList = this.state.movieList.filter(
@@ -83,7 +83,7 @@ export class Movie extends Component {
 
     try {
       let updatedMovie = await axios.put(
-        `http://localhost:3000/movies/edit-movie/${movie._id}`,
+        `http://localhost:3001/movies/edit-movie/${movie._id}`,
         {
           movie: this.state.updatedInput,
         }
@@ -116,7 +116,9 @@ export class Movie extends Component {
             onChange={this.handleMovieInputOnChange}
           />
         </div>
+
         <br />
+
         <button
           style={{ margin: "25px 25px" }}
           onClick={this.handleMovieSubmit}
@@ -124,7 +126,9 @@ export class Movie extends Component {
         >
           Submit
         </button>
+
         <br />
+
         {this.state.movieList.map((item) => {
           return (
             <div key={item._id}>
