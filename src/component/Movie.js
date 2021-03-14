@@ -90,7 +90,7 @@ export class Movie extends Component {
       );
 
       let updatedMovieList = this.state.movieList.map((item) => {
-        if (item.id === updatedMovie.data.data._id) {
+        if (item._id === updatedMovie.data.data._id) {
           item.movie = updatedMovie.data.data.movie;
         }
         return item;
@@ -125,7 +125,7 @@ export class Movie extends Component {
           Submit
         </button>
         <br />
-        {this.state.movieList.map((item, index) => {
+        {this.state.movieList.map((item) => {
           return (
             <div key={item._id}>
               {this.state.isToggle ? (
@@ -140,7 +140,7 @@ export class Movie extends Component {
               )}
 
               <button
-                onClick={() => this.handleUpdateByID(item, index)}
+                onClick={() => this.handleUpdateByID(item)}
                 style={{ margin: "10px" }}
                 className='btn btn-outline-info'
               >
